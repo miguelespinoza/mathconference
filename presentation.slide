@@ -68,7 +68,7 @@ A firing of an enabled transition t removes w(p,t) tokens from each input place 
 * Producer Consumer - Petri Net
 .image images/petrinet_pc1.png
 
-* Producer Consuemer with Priority - Petri Net
+* Producer Consumer with Priority - Petri Net
 .image images/petrinet_pc2.png
 
 
@@ -127,9 +127,9 @@ A firing of an enabled transition t removes w(p,t) tokens from each input place 
 .image images/csp_phil1.png
 .image images/csp_phil2.png
 
-* Dining Philosopher Implementation
-.image images/csp_phil3.png
-.image images/csp_phil4.png
+#* Dining Philosopher Implementation
+#.image images/csp_phil3.png
+#.image images/csp_phil4.png
 
 * Graphical Representation
 .image images/csp_phil5.png
