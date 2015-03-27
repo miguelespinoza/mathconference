@@ -1,0 +1,175 @@
+
+### Introduction
+Modeling Concurrency with Mathematics
+Francis Marion University
+27 Mar 2015
+
+Miguel Espinoza
+mespinozagil5692@g.fmarion.edu
+
+* What is Concurrency?
+- The ability to execute several computation simultaneously, and potentially interacting with each other.
+- The problems caused by concurrency are even more important than the ability to support concurrent interactions.
+
+* Why Mathematical Modeling?
+- Helps describe systems using mathematical concepts and language.
+
+############## Overview of presentation
+* Structure of the Presentation
+- Concurrent Pattern
+- Example with Go
+- Applying Mathematical modeling
+
+############### Section 1: Producer-Consumer -> Petri Nets
+* 1. Concurrent Pattern: Producer Consumer
+
+* Producer Consumer Basics
+.image images/producer_consumer.png
+- Example of a multi-process synchronization problem
+
+* Rules for Producer Consumer
+- buffer is full -> Producer stops
+- buffer is empty -> Consumer stops
+*Bad* *implementation* *may* *lead* *to* *deadlock*
+
+* Implementation
+.play programs/producer_consumer.go /START OMIT/,/END OMIT/
+
+##### Mathematical Model
+* Petri Nets
+
+### Petri Nets Overview
+* Petri Nets Basics
+- Mathematical model for describing distributed systems
+- Petri Nets are a bipartite graph
+
+   * Nodes
+      Places : particular state of a system
+         - Tokens
+      Transitions : events that act on that state
+   * Arc
+      Connected from places to transitions or vice versa
+
+* Graphical Overview
+.image images/petrinet_overview_graphic.png
+
+* Formal Definition
+.image images/petrinet_formal.png
+
+* Transition(firing) rules:
+.image images/petrinet_rule1.png
+A transition t is said to be enabled if each input place p of t is marked with at least w(p, t) tokens, where w(p,t) is the weight of the arc from p to t.
+
+
+* Transition(firing) rules cont.:
+.image images/petrinet_transition_firing.png
+A firing of an enabled transition t removes w(p,t) tokens from each input place p of t, and adds w(t,p) tokens to each out place p of t, where w(t,p) is the weight of the arc from t to p.
+
+* Producer Consumer - Petri Net
+.image images/petrinet_pc1.png
+
+* Producer Consuemer with Priority - Petri Net
+.image images/petrinet_pc2.png
+
+
+############### Section 2: Dining Philosopher -> Communicating Sequential Processes
+* 2. Concurrent Pattern: Dining Philosopher
+* Dining Philosopher Basics
+- A problem that illustrates synchronization problems in concurrent systems
+.image images/philosopher_basics.png
+
+* Problem
+- Deadlock: Philosophers starve
+.image images/forever_hungry.jpg
+
+* Implementation I
+.code programs/dining_phil.go /PSTART OMIT/,/PEND OMIT/
+.code programs/dining_phil.go /THINK_START OMIT/,/THINK_END OMIT/
+.code programs/dining_phil.go /EAT_START OMIT/,/EAT_END OMIT/
+
+* Implementation II
+.code programs/dining_phil.go /CHOP_START OMIT/,/CHOP_END OMIT/
+.code programs/dining_phil.go /RETCHOP_START OMIT/,/RETCHOP_END OMIT/
+
+* Implementation III
+.code programs/dining_phil.go /DINE_START OMIT/,/DINE_END OMIT/
+
+* Implementation IV
+.play programs/dining_phil.go /^func main/,/^}/
+
+##### Mathematical Model
+* Communicating Sequential Processes
+
+### CSP Overview
+* Basics of CSP
+- A languages used for describing patterns of interaction in concurrent systems.
+- Inherits properties from *Process* *Calculi*
+#that allow algebraic laws to manipulate and analyze concurrent systems.
+- Two primitives:
+   * Events
+      Represents communication or interaction
+   * Processes:
+      Represents behaviors fundamental to a system
+
+* Algebraic Operators
+- Prefix:
+   (x → P)
+- Choice:
+   (x → P | y → Q )
+- Parallel:
+   (P||Q)
+- Hiding:
+   (P\C)
+- Traces:
+   meaning of the process expression
+
+* Dining Philosopher Implementation
+.image images/csp_phil1.png
+.image images/csp_phil2.png
+
+* Dining Philosopher Implementation
+.image images/csp_phil3.png
+.image images/csp_phil4.png
+
+* Graphical Representation
+.image images/csp_phil5.png
+
+* Graphical Representation
+.image images/csp_phil6.png
+
+* Dining Philosopher Implementation
+.image images/csp_phil7.png
+.image images/csp_phil8.png
+
+* Dining Philosopher Implementation
+.image images/csp_phil9.png
+
+* Dining Philosopher Implementation
+Upon constructing this mathematical model, we reveal a danger to the system.
+
+* Dining Philosopher Implementation
+- Appoint a footman to the system.
+.image images/csp_phil10.png
+
+* Dining Philosopher Implementation
+- The behavior of the footman can be expressed by mutual recursion.
+.image images/csp_phil11.png
+.image images/csp_phil12.png
+.image images/csp_phil13.png
+
+* Proving this solution
+.image images/csp_phil14.png
+
+* Proving this solution
+.image images/csp_no_deadlock.png
+
+* Real Problem
+.image images/philosopher_funny.jpg
+
+* Notable Mathematical Models
+- Actor Model
+- Partially Ordered Sets
+- Pi-calculus
+
+* Lessons Learned
+-
