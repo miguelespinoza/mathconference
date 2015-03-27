@@ -53,8 +53,8 @@ mespinozagil5692@g.fmarion.edu
 * Graphical Overview
 .image images/petrinet_overview_graphic.png
 
-* Formal Definition
-.image images/petrinet_formal.png
+#* Formal Definition
+#.image images/petrinet_formal.png
 
 * Transition(firing) rules:
 .image images/petrinet_rule1.png
@@ -65,8 +65,8 @@ A transition t is said to be enabled if each input place p of t is marked with a
 .image images/petrinet_transition_firing.png
 A firing of an enabled transition t removes w(p,t) tokens from each input place p of t, and adds w(t,p) tokens to each out place p of t, where w(t,p) is the weight of the arc from t to p.
 
-* Producer Consumer - Petri Net
-.image images/petrinet_pc1.png
+#* Producer Consumer - Petri Net
+#.image images/petrinet_pc1.png
 
 * Producer Consumer with Priority - Petri Net
 .image images/petrinet_pc2.png
@@ -170,6 +170,3 @@ Upon constructing this mathematical model, we reveal a danger to the system.
 - Actor Model
 - Partially Ordered Sets
 - Pi-calculus
-
-* Lessons Learned
--
